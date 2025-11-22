@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banff Advisors | Strategic Automation by Kortex Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0c1929 0%, #1a365d 50%, #1e3a5f 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .glow { box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); }
+        .counter { font-variant-numeric: tabular-nums; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeInUp 0.6s ease forwards; }
+        .flow-arrow { animation: flowPulse 2s ease-in-out infinite; }
+        @keyframes flowPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+
+    <!-- Header -->
+    <header class="py-6 px-6 border-b border-blue-800/50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold">
+                    <span class="text-blue-400">KORTEX</span><span class="text-gray-300">LABS</span>
+                </h1>
+                <p class="text-gray-500 text-xs">Strategic Automation & Integration</p>
+            </div>
+            <div class="text-right">
+                <p class="text-blue-400 font-semibold">Banff Advisors</p>
+                <p class="text-xs text-gray-500">Kickoff Presentation</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-bold mb-6">
+                From <span class="text-red-400">Manual</span> to <span class="text-green-400">Automated</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8">
+                Double your client capacity without doubling your headcount
+            </p>
+            <div class="flex justify-center gap-8 text-center">
+                <div class="bg-blue-900/30 rounded-xl p-6 border border-blue-700/50">
+                    <p class="text-4xl font-bold text-blue-400 counter" id="hoursSaved">0</p>
+                    <p class="text-sm text-gray-400">Hours Saved/Month</p>
+                </div>
+                <div class="bg-blue-900/30 rounded-xl p-6 border border-blue-700/50">
+                    <p class="text-4xl font-bold text-green-400 counter" id="errorReduction">0</p>
+                    <p class="text-sm text-gray-400">% Error Reduction</p>
+                </div>
+                <div class="bg-blue-900/30 rounded-xl p-6 border border-blue-700/50">
+                    <p class="text-4xl font-bold text-purple-400 counter" id="capacityIncrease">0</p>
+                    <p class="text-sm text-gray-400">x Client Capacity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="py-16 px-6 bg-black/20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">
+                <span class="text-red-400">The Current Reality</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-red-900/20 rounded-2xl p-8 border border-red-500/30">
+                    <h3 class="text-xl font-bold mb-6 text-red-400">❌ What's Happening Now</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-500 mt-1">●</span>
+                            <span class="text-gray-300">Manual data entry between systems</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-500 mt-1">●</span>
+                            <span class="text-gray-300">Copy-paste workflows eating hours</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-500 mt-1">●</span>
+                            <span class="text-gray-300">Information scattered across tools</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-500 mt-1">●</span>
+                            <span class="text-gray-300">No real-time visibility into operations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-500 mt-1">●</span>
+                            <span class="text-gray-300">Things fall through the cracks</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-900/20 rounded-2xl p-8 border border-green-500/30">
+                    <h3 class="text-xl font-bold mb-6 text-green-400">✓ What We'll Build</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-1">●</span>
+                            <span class="text-gray-300">Systems that talk to each other automatically</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-1">●</span>
+                            <span class="text-gray-300">Zero manual data transfer</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-1">●</span>
+                            <span class="text-gray-300">Single source of truth dashboard</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-1">●</span>
+                            <span class="text-gray-300">Real-time operational visibility</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-1">●</span>
+                            <span class="text-gray-300">Nothing falls through - ever</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation Examples -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">How It Works</h2>
+            <p class="text-gray-400 text-center mb-12">Real automations we'll build for you</p>
+
+            <!-- Automation Flow 1 -->
+            <div class="bg-gray-900/50 rounded-2xl p-8 mb-8 border border-gray-700 card-hover">
+                <h3 class="text-xl font-bold mb-6 text-blue-400">🎯 Automation 1: Deal Closes → Client Onboarding</h3>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+                    <div class="bg-orange-500/20 rounded-lg p-4 text-center min-w-[120px]">
+                        <p class="text-2xl">📊</p>
+                        <p class="text-sm text-orange-400">HubSpot</p>
+                        <p class="text-xs text-gray-500">Deal Closes</p>
+                    </div>
+                    <div class="text-3xl text-blue-400 flow-arrow">→</div>
+                    <div class="bg-blue-500/20 rounded-lg p-4 text-center min-w-[120px]">
+                        <p class="text-2xl">⚡</p>
+                        <p class="text-sm text-blue-400">Automation</p>
+                        <p class="text-xs text-gray-500">Instant</p>
+                    </div>
+                    <div class="text-3xl text-blue-400 flow-arrow">→</div>
+                    <div class="flex gap-2">
+                        <div class="bg-gray-700/50 rounded-lg p-3 text-center">
+                            <p class="text-xl">📝</p>
+                            <p class="text-xs text-gray-400">Notion</p>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-3 text-center">
+                            <p class="text-xl">📁</p>
+                            <p class="text-xs text-gray-400">Drive</p>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-3 text-center">
+                            <p class="text-xl">📧</p>
+                            <p class="text-xs text-gray-400">Email</p>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-3 text-center">
+                            <p class="text-xl">💬</p>
+                            <p class="text-xs text-gray-400">Slack</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-900/20 rounded-lg p-4">
+                        <p class="text-red-400 font-semibold mb-2">❌ Before</p>
+                        <p class="text-gray-300">45 minutes of manual work per client</p>
+                        <p class="text-gray-500 text-sm">Copy-paste, create folders, send emails manually</p>
+                    </div>
+                    <div class="bg-green-900/20 rounded-lg p-4">
+                        <p class="text-green-400 font-semibold mb-2">✓ After</p>
+                        <p class="text-gray-300">0 minutes - happens automatically</p>
+                        <p class="text-gray-500 text-sm">Everything created in seconds when deal closes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation Flow 2 -->
+            <div class="bg-gray-900/50 rounded-2xl p-8 mb-8 border border-gray-700 card-hover">
+                <h3 class="text-xl font-bold mb-6 text-purple-400">📈 Automation 2: Weekly Reports Auto-Generated</h3>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+                    <div class="bg-purple-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">⏰</p>
+                        <p class="text-sm text-purple-400">Every Monday 8am</p>
+                    </div>
+                    <div class="text-3xl text-purple-400 flow-arrow">→</div>
+                    <div class="bg-purple-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">📊</p>
+                        <p class="text-sm text-purple-400">Pull Data</p>
+                    </div>
+                    <div class="text-3xl text-purple-400 flow-arrow">→</div>
+                    <div class="bg-purple-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">📄</p>
+                        <p class="text-sm text-purple-400">Generate PDF</p>
+                    </div>
+                    <div class="text-3xl text-purple-400 flow-arrow">→</div>
+                    <div class="bg-purple-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">📧</p>
+                        <p class="text-sm text-purple-400">Email Leadership</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-900/20 rounded-lg p-4">
+                        <p class="text-red-400 font-semibold mb-2">❌ Before</p>
+                        <p class="text-gray-300">2 hours every week manually creating reports</p>
+                        <p class="text-gray-500 text-sm">104 hours/year on report generation</p>
+                    </div>
+                    <div class="bg-green-900/20 rounded-lg p-4">
+                        <p class="text-green-400 font-semibold mb-2">✓ After</p>
+                        <p class="text-gray-300">Reports arrive automatically, perfectly formatted</p>
+                        <p class="text-gray-500 text-sm">104 hours/year saved for real work</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation Flow 3 -->
+            <div class="bg-gray-900/50 rounded-2xl p-8 border border-gray-700 card-hover">
+                <h3 class="text-xl font-bold mb-6 text-yellow-400">🚨 Automation 3: At-Risk Client Early Warning</h3>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+                    <div class="bg-yellow-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">🔍</p>
+                        <p class="text-sm text-yellow-400">Daily Scan</p>
+                    </div>
+                    <div class="text-3xl text-yellow-400 flow-arrow">→</div>
+                    <div class="bg-yellow-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">📉</p>
+                        <p class="text-sm text-yellow-400">Detect Risk</p>
+                        <p class="text-xs text-gray-500">Low usage, late payment</p>
+                    </div>
+                    <div class="text-3xl text-yellow-400 flow-arrow">→</div>
+                    <div class="bg-yellow-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">🚨</p>
+                        <p class="text-sm text-yellow-400">Alert Team</p>
+                    </div>
+                    <div class="text-3xl text-yellow-400 flow-arrow">→</div>
+                    <div class="bg-yellow-500/20 rounded-lg p-4 text-center">
+                        <p class="text-2xl">💪</p>
+                        <p class="text-sm text-yellow-400">Save Client</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-900/20 rounded-lg p-4">
+                        <p class="text-red-400 font-semibold mb-2">❌ Before</p>
+                        <p class="text-gray-300">Find out client is unhappy when they cancel</p>
+                        <p class="text-gray-500 text-sm">Reactive - by then it's too late</p>
+                    </div>
+                    <div class="bg-green-900/20 rounded-lg p-4">
+                        <p class="text-green-400 font-semibold mb-2">✓ After</p>
+                        <p class="text-gray-300">Get alerted 2 weeks before problems escalate</p>
+                        <p class="text-gray-500 text-sm">Proactive - save clients before they leave</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Dashboard Preview -->
+    <section class="py-16 px-6 bg-black/20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">Your Command Center</h2>
+            <p class="text-gray-400 text-center mb-12">Real-time visibility into everything</p>
+
+            <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700 glow">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-gray-500 text-sm">Banff Advisors Dashboard</span>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-900/30 rounded-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-blue-400">24</p>
+                        <p class="text-xs text-gray-400">Active Clients</p>
+                    </div>
+                    <div class="bg-green-900/30 rounded-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-green-400">$1.2M</p>
+                        <p class="text-xs text-gray-400">Pipeline Value</p>
+                    </div>
+                    <div class="bg-yellow-900/30 rounded-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-yellow-400">3</p>
+                        <p class="text-xs text-gray-400">At-Risk Clients</p>
+                    </div>
+                    <div class="bg-purple-900/30 rounded-lg p-4 text-center">
+                        <p class="text-3xl font-bold text-purple-400">98%</p>
+                        <p class="text-xs text-gray-400">Task Completion</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <p class="text-sm text-gray-400 mb-3">Recent Activity</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">✓ New client onboarded: Acme Corp</span>
+                                <span class="text-gray-500">2m ago</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">✓ Weekly report sent to leadership</span>
+                                <span class="text-gray-500">1h ago</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-yellow-400">⚠ Alert: Client XYZ low engagement</span>
+                                <span class="text-gray-500">3h ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <p class="text-sm text-gray-400 mb-3">Automation Stats This Week</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Tasks automated</span>
+                                <span class="text-green-400">147</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Hours saved</span>
+                                <span class="text-green-400">23.5</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Errors prevented</span>
+                                <span class="text-green-400">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">6-Week Transformation</h2>
+
+            <div class="space-y-6">
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center font-bold">1</div>
+                        <div class="w-0.5 h-full bg-blue-500/30 mt-2"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h3 class="font-bold text-lg text-blue-400">Week 1: Discovery</h3>
+                        <p class="text-gray-400">Deep-dive interviews, map all workflows, identify quick wins</p>
+                        <p class="text-sm text-gray-500 mt-1">Deliverable: Current State Map + Build Roadmap</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-green-500 rounded-full w-12 h-12 flex items-center justify-center font-bold">2-3</div>
+                        <div class="w-0.5 h-full bg-green-500/30 mt-2"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h3 class="font-bold text-lg text-green-400">Weeks 2-3: Quick Wins</h3>
+                        <p class="text-gray-400">Build and deploy Priority 1 & 2 automations</p>
+                        <p class="text-sm text-gray-500 mt-1">Deliverable: First automations live, measurable impact</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-purple-500 rounded-full w-12 h-12 flex items-center justify-center font-bold">4-5</div>
+                        <div class="w-0.5 h-full bg-purple-500/30 mt-2"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h3 class="font-bold text-lg text-purple-400">Weeks 4-5: Full Build</h3>
+                        <p class="text-gray-400">Complete remaining automations, dashboard, integrations</p>
+                        <p class="text-sm text-gray-500 mt-1">Deliverable: All Phase 1 automations deployed</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-yellow-500 rounded-full w-12 h-12 flex items-center justify-center font-bold text-black">6</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-yellow-400">Week 6: Training & Handoff</h3>
+                        <p class="text-gray-400">Team training, documentation, optimization</p>
+                        <p class="text-sm text-gray-500 mt-1">Deliverable: Team fully trained, system running smoothly</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gradient-to-r from-blue-900/50 to-purple-900/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Transform?</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Let's eliminate the manual work and build systems that scale with you.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <div class="bg-white/10 rounded-xl p-6 backdrop-blur">
+                    <p class="text-sm text-gray-400 mb-2">Your Investment</p>
+                    <p class="text-2xl font-bold text-blue-400">6 Weeks</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-6 backdrop-blur">
+                    <p class="text-sm text-gray-400 mb-2">Your Return</p>
+                    <p class="text-2xl font-bold text-green-400">Years of Saved Time</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-left bg-gray-900/50 rounded-2xl p-8 border border-gray-700">
+                <h3 class="text-xl font-bold mb-4">Next Steps</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                        <span class="text-gray-300">Send tech stack credentials to Info@kortexlabs.ai</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                        <span class="text-gray-300">Record 3-5 min Loom videos of your current workflows</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                        <span class="text-gray-300">Confirm Phase 1 start date</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-bold"><span class="text-blue-400">KORTEX</span>LABS</p>
+                <p class="text-sm text-gray-500">Strategic Automation & Integration</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-gray-400">Info@kortexlabs.ai</p>
+                <p class="text-sm text-gray-500">kortexlabs.ai</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Animated Counter Script -->
+    <script>
+        function animateCounter(elementId, target, suffix = '') {
+            const element = document.getElementById(elementId);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + suffix;
+            }, 30);
+        }
+
+        // Start counters when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                animateCounter('hoursSaved', 150, '+');
+                animateCounter('errorReduction', 95, '%');
+                animateCounter('capacityIncrease', 2, 'x');
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>
