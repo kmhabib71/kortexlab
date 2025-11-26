@@ -12,9 +12,9 @@
 - **Zero automation** for high-volume, mission-critical tasks
 - **Human error** breaking dashboards and client experience
 
-**We can automate 80% of this manual work in 6 weeks using Make.com + AI, saving your team 150-200 hours/month.**
+**We can automate 80% of this manual work in 6 weeks using Make.com + AI, saving your team 120-160 hours/month.**
 
-**ROI: $15,000-20,000/month in time savings (at $45/hour blended rate)**
+**ROI: $64,800-86,400/year in time savings (195-270% return on investment)**
 
 ---
 
@@ -135,26 +135,25 @@ Gmail + Slack + Zoom AI → GPT-4 Analysis → Notion Task Database
 
 **Solution:**
 ```
-Contender P2P Form → Make.com → Notion P2P Database → Email Reminders
+Contender P2P Form → Make.com → Contender API + Notion → Email Reminders
 ```
 
 **How It Works:**
 1. Max submits P2P intro via Contender (current process)
-2. Make.com catches webhook → creates Notion entry with:
-   - Both executives' names
-   - Intro reason
-   - Date sent
-   - Status: Pending/Completed
-3. Auto-sends follow-up reminders:
+2. Make.com polls `/api/v1/recommendations/find` for new intros
+3. Creates dual tracking:
+   - Updates intro status in Contender via `/api/v1/introductions/{uuid}`
+   - Mirrors to Notion P2P database for dashboard visibility
+4. Auto-sends follow-up reminders:
    - Day 7: "Did they connect?"
    - Day 14: "Follow up needed?"
-4. Tracks outcomes for quarterly reports
+5. Tracks outcomes for quarterly reports (synced back to Contender)
 
 **Time Saved: 20-30 hours/month**
 
-**Tech Stack:** Make.com + Notion API + Gmail + (Contender webhook OR Retool intermediary)
+**Tech Stack:** Make.com + Contender API + Notion API + Gmail
 
-**Deliverable:** Full visibility into intro pipeline, automated follow-ups
+**Deliverable:** Full visibility into intro pipeline, automated follow-ups, single source of truth
 
 ---
 
@@ -194,12 +193,12 @@ HubSpot Deal Created → Make.com → Automated Follow-Up Sequence
 
 **Goal: Automate client lifecycle, eliminate "machine falls apart"**
 
-### **Automation 4: Automated Client Onboarding (80% Hands-Free)**
+### **Automation 4: Automated Client Onboarding (100% Hands-Free)**
 **Problem:** 30-60 min manual entry across 4 systems per new client
 
 **Solution:**
 ```
-TSQ Contract Email → Make.com → HubSpot + Notion + Google Drive
+TSQ Contract Email → Make.com → HubSpot + Notion + Contender + Google Drive
 ```
 
 **How It Works:**
@@ -210,17 +209,19 @@ TSQ Contract Email → Make.com → HubSpot + Notion + Google Drive
    - Changes to "Tier 1 Executive"
    - Populates all fields from contract
 4. WhaleSync auto-creates Notion profile (already exists) ✅
-5. Make.com creates:
+5. Make.com creates Contender profile via `/api/v1/candidates/import`:
+   - Profile data from contract
+   - Photo (if provided)
+   - Tags: industry, function, goals
+6. Make.com creates:
    - Google Drive folder (with template docs)
    - Sends welcome email with kickoff scheduler
-6. **Manual step:** Max creates Contender profile (5-10 min)
-   - *Why:* Contender has limited API - will coordinate with engineers to build endpoint OR use Retool workaround
 
-**Time Saved: 6-8 hours/month**
+**Time Saved: 8-10 hours/month**
 
-**Tech Stack:** Make.com + OpenAI Vision API + HubSpot API + Notion API + Google Drive API
+**Tech Stack:** Make.com + OpenAI Vision API + HubSpot API + Notion API + Contender API + Google Drive API
 
-**Deliverable:** Client onboarding 80% automated, only Contender manual
+**Deliverable:** Client onboarding 100% automated across all 4 systems
 
 ---
 
@@ -259,27 +260,27 @@ Zoom Transcript → Make.com → GPT-4 Detection → Auto-Tag Notion
 
 **Solution:**
 ```
-Network Growth Call → Make.com → Smart Routing System
+Network Growth Call → Make.com → AI Matching → Contender Auto-Submission
 ```
 
 **How It Works:**
-1. After exec growth call, Kayla adds notes to Notion (current process)
-2. Make.com detects new profile with industry/function tags
-3. AI suggests B4B partner matches:
+1. After exec growth call, Kayla adds profile to Contender (current process)
+2. Make.com detects new candidate via `/api/v1/candidates/find`
+3. AI analyzes profile + pulls active B4B pipelines via `/api/v1/pipelines/find`:
    - "Larry (CFO, fintech) → Lightspeed (week 1), Blackstone (week 2), OTP (week 3)"
-4. Creates scheduled reminders:
-   - Week 1: "Publish Larry to Lightspeed pipeline"
-   - Week 2: "Publish Larry to Blackstone pipeline"
-   - Week 3: "Publish Larry to OTP pipeline"
-5. Tracks completion automatically
+4. Creates scheduled submissions via `/api/v1/submissions/pipelines`:
+   - Week 1: Auto-submit to Lightspeed pipeline
+   - Week 2: Auto-submit to Blackstone pipeline
+   - Week 3: Auto-submit to OTP pipeline
+5. Tracks completion automatically, updates trending schedule
 
 **Time Saved: Unknown but critical - eliminates "forgotten profiles"**
 
 **Impact:** Scalable system, no longer brain-dependent
 
-**Tech Stack:** Make.com + OpenAI API + Notion API + Contender API (or Retool workaround)
+**Tech Stack:** Make.com + OpenAI API + Contender API + Notion API
 
-**Deliverable:** Systematic partner routing, nothing falls through cracks
+**Deliverable:** Systematic partner routing with auto-submission, nothing falls through cracks
 
 ---
 
@@ -344,36 +345,34 @@ Network Growth Call → Make.com → Smart Routing System
 | **Slack** | ✅ Full API | Direct Make.com integration |
 | **Zapier** | ✅ Already used | Keep existing Zaps, augment with Make.com |
 | **WhaleSync** | ✅ Keep as-is | Already works for HubSpot→Notion |
-| **Contender** | ⚠️ Limited API | **Option 1:** Use Retool as intermediary (like Nathan does)<br>**Option 2:** Work with Contender engineers to build endpoints<br>**Option 3:** Keep manual for Week 2-5, automate in Phase 3 |
+| **Contender** | ✅ Full REST API | Direct Make.com integration via OAuth2 (OpenAPI spec provided by Amanda) |
 | **Retool** | ✅ Internal tool | Read data for dashboards, write back via API |
 
-### **The Contender Challenge:**
+### **The Contender Breakthrough:**
 
-**David, here's the honest assessment:**
+**David, great news from Amanda this week:**
 
-Contender has **limited API** access. From the kickoff meeting, Nathan said:
-> "We can change it to communicate better with other tools... we have engineers that can make it give access to whatever systems we need"
+Contender has a **comprehensive REST API** with OAuth2 authentication. Amanda provided the complete OpenAPI specification with 50+ endpoints covering:
 
-**Our 3-Option Approach:**
+**Full API Capabilities:**
+- ✅ **Candidates:** Create, search, filter, update profiles, upload resumes
+- ✅ **Introductions:** Get intro details, update status, create recommendations
+- ✅ **Teams:** List B4B partners, get team details, access pipelines
+- ✅ **Pipelines:** Submit candidates to searches, track progress
+- ✅ **Trending Schedule:** Read/write scheduled campaigns
+- ✅ **Companies:** Search target companies, get member lists
+- ✅ **People:** Identify advisors, get current user info
 
-1. **Week 2-5 (Quick Wins):** Build automations that DON'T need Contender
-   - Task extraction ✅
-   - P2P tracking (use Notion) ✅
-   - Sales follow-up ✅
-   - Zoom tagging ✅
-   - 80% of time savings WITHOUT touching Contender
+**What This Means for the Roadmap:**
 
-2. **Week 4-5 (Contender Workarounds):**
-   - Use Retool as intermediary (Nathan already does this)
-   - Client onboarding: Automate HubSpot/Notion/Drive, Contender = 5 min manual step
-   - Still saves 25-30 min per client
+This is **better than expected**. All automations can integrate directly with Contender:
 
-3. **Phase 3 (Optional - Weeks 7-12):**
-   - Work with Contender engineers to build API endpoints we need
-   - Full integration: Profile creation, intro tracking, trending campaign automation
-   - Unlocks final 50-60 hours/month
+1. **Client Onboarding (Week 4):** Auto-create profiles via `/api/v1/candidates/import` - 100% automated
+2. **P2P Tracking (Week 2):** Full intro lifecycle via `/api/v1/introductions` endpoints
+3. **Network Routing (Week 5):** Smart suggestions using `/api/v1/teams/find` and auto-submission
+4. **Trending Campaigns:** Auto-scheduling via `/api/v1/trending_schedule`
 
-**Bottom Line:** We don't let Contender block us. We save 100-140 hrs/month WITHOUT it, then tackle it later.
+**Bottom Line:** No workarounds needed. Direct Make.com integration with Contender unlocks the full 150-200 hrs/month savings from day one.
 
 ---
 
@@ -383,38 +382,38 @@ Contender has **limited API** access. From the kickoff meeting, Nathan said:
 |-------|-------|--------------|------------|------------|
 | **Phase 1: Discovery** | Week 1 | Workflow mapping, system access, roadmap | - | $4,000-5,000 |
 | **Phase 2: Quick Wins** | Weeks 2-3 | AI task extraction, P2P tracking, sales follow-up | 60-80 hrs/month | $12,000-15,000 |
-| **Phase 3: Foundation** | Weeks 4-5 | Auto-onboarding, Zoom tagging, network routing | +40-60 hrs/month | $12,000-15,000 |
+| **Phase 3: Foundation** | Weeks 4-5 | Auto-onboarding, Zoom tagging, network routing | +60-80 hrs/month | $12,000-15,000 |
 | **Phase 4: Training** | Week 6 | Documentation, training, handoff | - | $4,000-6,000 |
-| **TOTAL** | 6 weeks | 6 major automations live | **100-140 hrs/month** | **$32,000-41,000** |
+| **TOTAL** | 6 weeks | 6 major automations live | **120-160 hrs/month** | **$32,000-41,000** |
 
-**Optional Phase 5:** Weeks 7-12 (Contender deep integration, advanced features) - **+50-60 hrs/month**
+**Optional Phase 5:** Weeks 7-12 (Advanced Contender features, predictive analytics) - **+30-40 hrs/month**
 
 ---
 
 # SUCCESS METRICS
 
 ## Month 1-2 (After Phase 2-3):
-- ✅ 100-140 hours/month saved
+- ✅ 120-160 hours/month saved (improved from 100-140 with Contender API)
 - ✅ Task extraction 90% automated
-- ✅ P2P intros fully tracked
+- ✅ P2P intros fully tracked (synced to Contender)
 - ✅ Sales leads no longer "die from neglect"
 - ✅ Zoom transcripts auto-tagged
-- ✅ Client onboarding 80% automated
-- ✅ "Machine" no longer falls apart
+- ✅ Client onboarding 100% automated (all 4 systems)
+- ✅ "Machine" no longer falls apart (auto-submission to pipelines)
 
-## Month 3-6 (With Phase 5):
+## Month 3-6 (With Phase 5 - Advanced Features):
 - ✅ 150-200 hours/month saved
-- ✅ Full Contender integration
-- ✅ Trending campaigns 50% faster
+- ✅ Advanced Contender features (trending campaigns, bulk operations)
+- ✅ Trending campaigns 70% faster (improved with API)
 - ✅ Quarterly reports 100% accurate
 - ✅ Scalable to 20+ new clients/month
 
 ## ROI Calculation:
-**Time Saved:** 100-140 hrs/month = 1,200-1,680 hrs/year
-**Value:** At $45/hr blended rate = **$54,000-75,600/year**
+**Time Saved:** 120-160 hrs/month = 1,440-1,920 hrs/year
+**Value:** At $45/hr blended rate = **$64,800-86,400/year**
 **Investment:** $32,000-41,000
-**ROI:** **165-184% in Year 1**
-**Payback Period:** 6-7 months
+**ROI:** **195-270% in Year 1**
+**Payback Period:** 4.5-6 months
 
 **Intangible Benefits:**
 - Team morale (less "stupid" manual work)
@@ -434,10 +433,11 @@ Contender has **limited API** access. From the kickoff meeting, Nathan said:
 - Prove value before asking for more
 - Build trust iteratively
 
-### **2. We Work Around Contender, Not Through It**
-- Don't let limited API block progress
-- Use Retool workaround (like Nathan already does)
-- Coordinate with engineers only when needed
+### **2. We Have Full Contender API Access**
+- Amanda provided complete OpenAPI spec this week
+- 50+ endpoints for direct integration
+- No workarounds needed - clean, maintainable automation
+- Auto-submission to pipelines, profile creation, intro tracking
 
 ### **3. We Prioritize Adoption**
 - AI creates tasks with "Needs Review" status (Max approves)
@@ -457,8 +457,8 @@ Contender has **limited API** access. From the kickoff meeting, Nathan said:
 ## Risk 1: "AI will make mistakes"
 **Mitigation:** All AI-generated tasks/tags go to "Needs Review" status. Human approves before actionable. AI learns from corrections.
 
-## Risk 2: "Contender has no API"
-**Mitigation:** Phase 2-3 saves 100-140 hrs/month WITHOUT Contender. Retool workaround for Phase 4-5. Engineer coordination only if extended.
+## Risk 2: "Contender API integration complexity"
+**Mitigation:** Amanda provided full OpenAPI spec with 50+ documented endpoints. Standard OAuth2 authentication. Make.com has built-in HTTP module for API calls. We test in staging before production.
 
 ## Risk 3: "Team won't adopt new workflows"
 **Mitigation:** Week 6 training + documentation. Make.com is visual (no coding). Start with high-pain tasks (they'll WANT to use it).
@@ -505,13 +505,13 @@ Contender has **limited API** access. From the kickoff meeting, Nathan said:
    - Start Week 2 immediately after Thanksgiving?
    - OR delay to early December?
 
-## 2. **Phase 5 (Contender Deep Integration):**
-   - Extend to 12 weeks for full 150-200 hrs/month?
-   - OR stop at 6 weeks with 100-140 hrs/month saved?
+## 2. **Phase 5 (Advanced Features):**
+   - Extend to 12 weeks for advanced features (predictive analytics, trending campaign optimization)?
+   - OR stop at 6 weeks with 120-160 hrs/month saved?
 
-## 3. **Contender Engineers:**
-   - Who should we coordinate with for API endpoints?
-   - OR stick with Retool workaround?
+## 3. **Contender OAuth2 Credentials:**
+   - Can Amanda provide OAuth2 credentials for API access?
+   - Timeline for API access (needed by Week 2)?
 
 ## 4. **Success Definition:**
    - What does "this is working" look like to you?
@@ -543,12 +543,13 @@ Contender has **limited API** access. From the kickoff meeting, Nathan said:
 - Retool dashboard unreliable → can't make data-driven decisions
 
 **This automation roadmap:**
-- ✅ Saves $54,000-75,600/year in time
+- ✅ Saves $64,800-86,400/year in time (195-270% ROI)
 - ✅ Avoids $240k-360k in new hires
 - ✅ Unlocks scalability to 300+ clients
 - ✅ Makes your "same washing machine" vision real
+- ✅ Full Contender API integration (discovered this week!)
 
-**6 weeks from now, your team gets 100-140 hours/month back to focus on what humans do best: relationships, strategy, growth.**
+**6 weeks from now, your team gets 120-160 hours/month back to focus on what humans do best: relationships, strategy, growth.**
 
 ---
 

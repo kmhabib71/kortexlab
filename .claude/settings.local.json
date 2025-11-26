@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx @redocly/cli preview-docs openapi.json)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
